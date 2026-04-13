@@ -159,8 +159,8 @@ async function fetchSolFirstTx(address) {
 }
 
 const chains = {
-  eth: { label: "Ethereum", color: "#627EEA", icon: "⟠" },
-  sol: { label: "Solana", color: "#14F195", icon: "◎" },
+  eth: { label: "Ethereum", color: "#5072f8", icon: "⟠" },
+  sol: { label: "Solana", color: "#5614f1", icon: "◎" },
 };
 
 export default function App() {
@@ -244,7 +244,7 @@ export default function App() {
             ◈ ON-CHAIN ARCHIVE ◈
           </div>
           <h1 style={{
-            fontFamily: "'Syne', sans-serif", fontSize: "clamp(40px, 9vw, 72px)",
+            fontFamily: "'Syne', sans-serif", fontSize: "clamp(24px, 5vw, 60px)",
             fontWeight: 800, margin: 0, lineHeight: 0.9, letterSpacing: "-0.02em",
             background: `linear-gradient(135deg, #ffffff 30%, ${cfg.color} 100%)`,
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
