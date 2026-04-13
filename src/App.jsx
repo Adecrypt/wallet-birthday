@@ -121,6 +121,15 @@ async function fetchSolFirstTx(address) {
   const mostActiveYear = Object.keys(yearCount).sort((a, b) => yearCount[b] - yearCount[a])[0] || "—";
 
   let firstToken = null;
+  try {
+    const tokenRes = await fetch(`${SERVER}/solana-first-token?address=${address}&apikey=${HELIUS_API_KEY}`);
+    const tokenData = await tokenRes.json();
+    if (tokenData.status === "1" && tokenData.result?.length) {
+      const t = tokenData.result[0];
+      firstToken = { name: t.tokenName || "Unknown", symbol: t.tokenSymbol || "?" };
+    }
+  } catch (e) {}
+
   let firstNFT = null;
   try {
     const txRes = await fetch(`https://api.helius.xyz/v0/addresses/${address}/transactions?api-key=${HELIUS_API_KEY}&limit=100&type=ANY`);
