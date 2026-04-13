@@ -30,27 +30,16 @@ function formatDateTime(dateMs) {
   });
 }
 
-async function fetchEthFirstTx(address) {
-  // First tx
-  const res = await fetch(
-    `https://wallet-birthday-server.onrender.com?address=${address}&apikey=${ETHERSCAN_API_KEY}`
-  );
-  const data = await res.json();
-  if (data.status !== "1" || !data.result?.length)
-    throw new Error("No ETH transactions found or invalid address.");
-  const tx = data.result[0];
-  const dateMs = parseInt(tx.timeStamp) * 1000;
-
-  // All txs for stats
+let totalGasEth = 0;
+let yearCount = {};
+let totalTx = 0;
+try {
   const allRes = await fetch(
-    `https://wallet-birthday-server.onrender.com?address=${address}&apikey=${ETHERSCAN_API_KEY}`
+    `https://wallet-birthday-server.onrender.com/eth-all-tx?address=${address}&apikey=${ETHERSCAN_API_KEY}`
   );
   const allData = await allRes.json();
   const allTxs = allData.status === "1" ? allData.result : [];
-
-  // Total gas spent
-  let totalGasEth = 0;
-  const yearCount = {};
+  totalTx = allTxs.length;
   allTxs.forEach(t => {
     const gasUsed = parseInt(t.gasUsed || 0);
     const gasPrice = parseInt(t.gasPrice || 0);
@@ -58,7 +47,9 @@ async function fetchEthFirstTx(address) {
     const year = new Date(parseInt(t.timeStamp) * 1000).getFullYear();
     yearCount[year] = (yearCount[year] || 0) + 1;
   });
-  const mostActiveYear = Object.keys(yearCount).sort((a, b) => yearCount[b] - yearCount[a])[0] || "—";
+} catch {}
+
+const mostActiveYear = Object.keys(yearCount).sort((a, b) => yearCount[b] - yearCount[a])[0] || "—";
 
   // ENS name
   let ensName = null;
@@ -111,7 +102,7 @@ async function fetchEthFirstTx(address) {
     firstToken,
     firstNFT,
   };
-}
+
 
 async function fetchSolFirstTx(address) {
   const rpcUrl = `https://mainnet.helius-rpc.com/?api-key=${HELIUS_API_KEY}`;
