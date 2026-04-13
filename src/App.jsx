@@ -37,7 +37,7 @@ function weiToEth(wei) {
 async function fetchEthFirstTx(address) {
   // First tx
   const res = await fetch(
-    `http://localhost:3001/eth-first-tx?address=${address}&apikey=${ETHERSCAN_API_KEY}`
+    `https://wallet-birthday-server.onrender.com?address=${address}&apikey=${ETHERSCAN_API_KEY}`
   );
   const data = await res.json();
   if (data.status !== "1" || !data.result?.length)
@@ -47,7 +47,7 @@ async function fetchEthFirstTx(address) {
 
   // All txs for stats
   const allRes = await fetch(
-    `http://localhost:3001/eth-all-tx?address=${address}&apikey=${ETHERSCAN_API_KEY}`
+    `https://wallet-birthday-server.onrender.com?address=${address}&apikey=${ETHERSCAN_API_KEY}`
   );
   const allData = await allRes.json();
   const allTxs = allData.status === "1" ? allData.result : [];
@@ -67,7 +67,7 @@ async function fetchEthFirstTx(address) {
   // ENS name
   let ensName = null;
   try {
-    const ensRes = await fetch(`http://localhost:3001/ens?address=${address}&apikey=${ETHERSCAN_API_KEY}`);
+    const ensRes = await fetch(`https://wallet-birthday-server.onrender.com?address=${address}&apikey=${ETHERSCAN_API_KEY}`);
     const ensData = await ensRes.json();
     ensName = ensData.name || null;
   } catch {}
@@ -76,7 +76,7 @@ async function fetchEthFirstTx(address) {
   let firstToken = null;
   try {
     const tokenRes = await fetch(
-      `http://localhost:3001/eth-first-token?address=${address}&apikey=${ETHERSCAN_API_KEY}`
+      `https://wallet-birthday-server.onrender.com?address=${address}&apikey=${ETHERSCAN_API_KEY}`
     );
     const tokenData = await tokenRes.json();
     if (tokenData.status === "1" && tokenData.result?.length) {
@@ -89,7 +89,7 @@ async function fetchEthFirstTx(address) {
   let firstNFT = null;
   try {
     const nftRes = await fetch(
-      `http://localhost:3001/eth-first-nft?address=${address}&apikey=${ETHERSCAN_API_KEY}`
+      `https://wallet-birthday-server.onrender.com?address=${address}&apikey=${ETHERSCAN_API_KEY}`
     );
     const nftData = await nftRes.json();
     if (nftData.status === "1" && nftData.result?.length) {
