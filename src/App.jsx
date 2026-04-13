@@ -30,10 +30,6 @@ function formatDateTime(dateMs) {
   });
 }
 
-function weiToEth(wei) {
-  return (parseInt(wei) / 1e18).toFixed(5);
-}
-
 async function fetchEthFirstTx(address) {
   // First tx
   const res = await fetch(
