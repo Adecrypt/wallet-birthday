@@ -159,8 +159,8 @@ async function fetchSolFirstTx(address) {
 }
 
 const chains = {
-  eth: { label: "Ethereum", color: "#627EEA", icon: "⟠" },
-  sol: { label: "Solana", color: "#14F195", icon: "◎" },
+  eth: { label: "Ethereum", color: "#486af4", icon: "⟠" },
+  sol: { label: "Solana", color: "#6722e6", icon: "◎" },
 };
 
 export default function App() {
@@ -244,7 +244,7 @@ export default function App() {
             ◈ ON-CHAIN ARCHIVE ◈
           </div>
           <h1 style={{
-            fontFamily: "'Syne', sans-serif", fontSize: "clamp(40px, 9vw, 72px)",
+            fontFamily: "'Syne', sans-serif", fontSize: "clamp(20px, 5vw, 55px)",
             fontWeight: 800, margin: 0, lineHeight: 0.9, letterSpacing: "-0.02em",
             background: `linear-gradient(135deg, #ffffff 30%, ${cfg.color} 100%)`,
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
@@ -356,7 +356,7 @@ export default function App() {
                     <div style={{ fontSize: 8, color: "#2a2f3a", letterSpacing: "0.35em", marginBottom: 8, fontFamily: "'Space Mono', monospace" }}>
                       WALLET OPENED ON
                     </div>
-                    <div style={{ fontSize: "clamp(16px, 3.5vw, 24px)", fontWeight: 800, color: "#fff", fontFamily: "'Syne', sans-serif", lineHeight: 1.2 }}>
+                    <div style={{ fontSize: "clamp(10px, 5.5vw, 18px)", fontWeight: 800, color: "#fff", fontFamily: "'Syne', sans-serif", lineHeight: 1.2 }}>
                       🎂 {result.date}
                     </div>
                     <div style={{ fontSize: 9, color: "#2a2f3a", marginTop: 6, fontFamily: "'Space Mono', monospace" }}>
