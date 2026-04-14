@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ETHERSCAN_API_KEY = "84SFQP2F84YIC6M7JNBRF9X3KD43Z6FHRR";
+const ETHERSCAN_API_KEY = "84SFQP2F84YIC6M7JNBRF9X3KD43Z6FHRRx";
 const HELIUS_API_KEY = "7733dd36-5ea9-4c1c-9ecd-044cf74eee23";
 const SERVER = "https://wallet-birthday-server.onrender.com";
 
@@ -121,15 +121,6 @@ async function fetchSolFirstTx(address) {
   const mostActiveYear = Object.keys(yearCount).sort((a, b) => yearCount[b] - yearCount[a])[0] || "—";
 
   let firstToken = null;
-  try {
-    const tokenRes = await fetch(`${SERVER}/solana-first-token?address=${address}&apikey=${HELIUS_API_KEY}`);
-    const tokenData = await tokenRes.json();
-    if (tokenData.status === "1" && tokenData.result?.length) {
-      const t = tokenData.result[0];
-      firstToken = { name: t.tokenName || "Unknown", symbol: t.tokenSymbol || "?" };
-    }
-  } catch (e) {}
-
   let firstNFT = null;
   try {
     const txRes = await fetch(`https://api.helius.xyz/v0/addresses/${address}/transactions?api-key=${HELIUS_API_KEY}&limit=100&type=ANY`);
@@ -168,8 +159,8 @@ async function fetchSolFirstTx(address) {
 }
 
 const chains = {
-  eth: { label: "Ethereum", color: "#5072f8", icon: "⟠" },
-  sol: { label: "Solana", color: "#5614f1", icon: "◎" },
+  eth: { label: "Ethereum", color: "#627EEA", icon: "⟠" },
+  sol: { label: "Solana", color: "#14F195", icon: "◎" },
 };
 
 export default function App() {
@@ -253,7 +244,7 @@ export default function App() {
             ◈ ON-CHAIN ARCHIVE ◈
           </div>
           <h1 style={{
-            fontFamily: "'Syne', sans-serif", fontSize: "clamp(24px, 5vw, 60px)",
+            fontFamily: "'Syne', sans-serif", fontSize: "clamp(40px, 9vw, 72px)",
             fontWeight: 800, margin: 0, lineHeight: 0.9, letterSpacing: "-0.02em",
             background: `linear-gradient(135deg, #ffffff 30%, ${cfg.color} 100%)`,
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
